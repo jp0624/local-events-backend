@@ -1,0 +1,3 @@
+[submodule "apps/frontend-next"]
+	path = apps/frontend-next
+	url = git@github.com:jp0624/local-events-frontend.git
