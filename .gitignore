@@ -1,0 +1,26 @@
+cat > .gitignore <<'EOF'
+# OS
+.DS_Store
+
+# Node
+node_modules/
+.next/
+out/
+
+# Drupal
+apps/backend-drupal/vendor/
+apps/backend-drupal/web/sites/*/files/
+apps/backend-drupal/web/sites/*/private/
+apps/backend-drupal/web/sites/*/settings.local.php
+
+# DDEV
+.ddev/.dbimageBuild/
+.ddev/.gitpod*
+
+# Env
+.env
+.env.local
+
+# Logs
+*.log
+EOF
