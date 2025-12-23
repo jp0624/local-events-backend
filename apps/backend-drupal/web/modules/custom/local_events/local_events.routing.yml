@@ -1,0 +1,15 @@
+local_events.venues:
+  path: '/local-events-api/venues'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\LocalEventsController::venues'
+    _title: 'Venues'
+  requirements:
+    _permission: 'access content'
+
+local_events.organizers:
+  path: '/local-events-api/organizers'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\LocalEventsController::organizers'
+    _title: 'Organizers'
+  requirements:
+    _permission: 'access content'

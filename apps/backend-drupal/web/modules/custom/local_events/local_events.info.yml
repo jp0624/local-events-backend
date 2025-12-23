@@ -1,0 +1,7 @@
+name: Local Events
+type: module
+description: Custom functionality for the Local Events headless platform
+core_version_requirement: ^10 || ^11
+package: Local Events
+dependencies:
+  - drupal:jsonapi
