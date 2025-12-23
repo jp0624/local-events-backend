@@ -4,3 +4,12 @@
  * @file
  * Local Events custom module.
  */
+
+/**
+ * Implements hook_help().
+ */
+function local_events_help($route_name, $route_match) {
+  if ($route_name === 'help.page.local_events') {
+    return t('Provides custom endpoints and pages for Local Events.');
+  }
+}

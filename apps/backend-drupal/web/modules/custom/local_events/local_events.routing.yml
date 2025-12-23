@@ -1,29 +1,45 @@
-# Events endpoint
-local_events.events:
-  path: '/local-events/events'
+local_events.dashboard:
+  path: '/local-events'
   defaults:
-    _controller: '\Drupal\local_events\Controller\EventsController::list'
-    _title: 'Events'
-  methods: [GET]
+    _controller: '\Drupal\local_events\Controller\EventsController::dashboard'
+    _title: 'Local Events'
   requirements:
     _permission: 'access content'
 
-# Venues endpoint
 local_events.venues:
   path: '/local-events/venues'
   defaults:
     _controller: '\Drupal\local_events\Controller\VenuesController::list'
     _title: 'Venues'
-  methods: [GET]
   requirements:
     _permission: 'access content'
 
-# Organizers endpoint
 local_events.organizers:
   path: '/local-events/organizers'
   defaults:
     _controller: '\Drupal\local_events\Controller\OrganizersController::list'
     _title: 'Organizers'
-  methods: [GET]
+  requirements:
+    _permission: 'access content'
+
+# JSON endpoints (for Next.js)
+local_events.api.events:
+  path: '/api/events'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\EventsController::api'
+  requirements:
+    _permission: 'access content'
+
+local_events.api.venues:
+  path: '/api/venues'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\VenuesController::api'
+  requirements:
+    _permission: 'access content'
+
+local_events.api.organizers:
+  path: '/api/organizers'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\OrganizersController::api'
   requirements:
     _permission: 'access content'

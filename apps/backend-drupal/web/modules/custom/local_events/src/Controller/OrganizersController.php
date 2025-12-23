@@ -3,8 +3,8 @@
 namespace Drupal\local_events\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Drupal\node\Entity\Node;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class OrganizersController extends ControllerBase {
 
@@ -12,21 +12,41 @@ class OrganizersController extends ControllerBase {
     $nids = \Drupal::entityQuery('node')
       ->condition('type', 'organizer')
       ->condition('status', 1)
+      ->accessCheck(TRUE)
       ->execute();
 
-    $nodes = Node::loadMultiple($nids);
-
-    $organizers = [];
-    foreach ($nodes as $node) {
-      $organizers[] = [
-        'id' => $node->id(),
-        'title' => $node->getTitle(),
-        'email' => $node->get('field_email')->value ?? null,
-        'phone' => $node->get('field_phone')->value ?? null,
-      ];
+    $items = [];
+    if ($nids) {
+      foreach (Node::loadMultiple($nids) as $node) {
+        $items[] = $node->label();
+      }
     }
 
-    return new JsonResponse(['data' => $organizers]);
+    return [
+      '#theme' => 'item_list',
+      '#title' => 'Organizers',
+      '#items' => $items,
+      '#empty' => 'No organizers found.',
+    ];
   }
 
+  public function api() {
+    $nids = \Drupal::entityQuery('node')
+      ->condition('type', 'organizer')
+      ->condition('status', 1)
+      ->accessCheck(TRUE)
+      ->execute();
+
+    $data = [];
+    if ($nids) {
+      foreach (Node::loadMultiple($nids) as $node) {
+        $data[] = [
+          'id' => $node->uuid(),
+          'name' => $node->label(),
+        ];
+      }
+    }
+
+    return new JsonResponse($data);
+  }
 }
