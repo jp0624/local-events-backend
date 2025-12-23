@@ -1,15 +1,29 @@
-local_events.venues:
-  path: '/local-events-api/venues'
+# Events endpoint
+local_events.events:
+  path: '/local-events/events'
   defaults:
-    _controller: '\Drupal\local_events\Controller\LocalEventsController::venues'
-    _title: 'Venues'
+    _controller: '\Drupal\local_events\Controller\EventsController::list'
+    _title: 'Events'
+  methods: [GET]
   requirements:
     _permission: 'access content'
 
-local_events.organizers:
-  path: '/local-events-api/organizers'
+# Venues endpoint
+local_events.venues:
+  path: '/local-events/venues'
   defaults:
-    _controller: '\Drupal\local_events\Controller\LocalEventsController::organizers'
+    _controller: '\Drupal\local_events\Controller\VenuesController::list'
+    _title: 'Venues'
+  methods: [GET]
+  requirements:
+    _permission: 'access content'
+
+# Organizers endpoint
+local_events.organizers:
+  path: '/local-events/organizers'
+  defaults:
+    _controller: '\Drupal\local_events\Controller\OrganizersController::list'
     _title: 'Organizers'
+  methods: [GET]
   requirements:
     _permission: 'access content'
